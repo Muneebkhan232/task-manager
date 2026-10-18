@@ -1,0 +1,15 @@
+{
+  "info": { "name": "Task Manager API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "variable": [ { "key": "baseUrl", "value": "http://localhost:5000" }, { "key": "taskId", "value": "" } ],
+  "item": [
+    { "name": "Create task", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Write report\",\n  \"description\": \"Quarterly report\",\n  \"status\": \"pending\",\n  \"dueDate\": \"2026-11-01\"\n}" }, "url": "{{baseUrl}}/api/tasks" } },
+    { "name": "Get all tasks", "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks" } },
+    { "name": "Get single task", "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks/{{taskId}}" } },
+    { "name": "Update task", "request": { "method": "PUT", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"status\": \"completed\"\n}" }, "url": "{{baseUrl}}/api/tasks/{{taskId}}" } },
+    { "name": "Delete task", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/tasks/{{taskId}}" } },
+    { "name": "Invalid task ID (400)", "request": { "method": "GET", "url": "{{baseUrl}}/api/tasks/123" } },
+    { "name": "Missing title (400)", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{}" }, "url": "{{baseUrl}}/api/tasks" } },
+    { "name": "AI plan task", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"description\": \"I need to build a portfolio website within three days.\"\n}" }, "url": "{{baseUrl}}/api/ai/plan-task" } },
+    { "name": "AI plan - missing description (400)", "request": { "method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{}" }, "url": "{{baseUrl}}/api/ai/plan-task" } }
+  ]
+}
